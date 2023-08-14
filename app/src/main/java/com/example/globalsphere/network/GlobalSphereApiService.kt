@@ -2,6 +2,7 @@ package com.example.globalsphere.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
 
 /**
  * PROJECT NAME: GlobalSphere
@@ -17,5 +18,13 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 interface GlobalSphereApiService {
+    @GET("all")
+    suspend fun getCountries(): String
 
+}
+
+object GlobalSphereAPI{
+    val retrofitService: GlobalSphereApiService by lazy {
+        retrofit.create(GlobalSphereApiService::class.java)
+    }
 }
