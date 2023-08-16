@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.globalsphere.data.CountryInfo
 import com.example.globalsphere.network.GlobalSphereAPI
 import kotlinx.coroutines.launch
 
@@ -17,7 +18,7 @@ import kotlinx.coroutines.launch
  */
 class GlobalSphereViewModel : ViewModel() {
 
-    var globalSphereState: String by mutableStateOf("")
+    var globalSphereState: List<CountryInfo> by mutableStateOf(emptyList())
     private set
 
     init {

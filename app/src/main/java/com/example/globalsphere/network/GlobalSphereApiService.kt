@@ -1,5 +1,6 @@
 package com.example.globalsphere.network
 
+import com.example.globalsphere.data.CountryInfo
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -19,7 +20,7 @@ private val retrofit = Retrofit.Builder()
     .build()
 interface GlobalSphereApiService {
     @GET("all")
-    suspend fun getCountries(): String
+    suspend fun getCountries(): List<CountryInfo>
 
 }
 

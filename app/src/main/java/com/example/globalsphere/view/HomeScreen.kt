@@ -5,6 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.globalsphere.data.CountryInfo
 
 /**
  * PROJECT NAME: GlobalSphere
@@ -15,15 +16,15 @@ import androidx.compose.ui.Modifier
  */
 @Composable
 fun HomeScreen(
-    globalSphereState: String, modifier: Modifier = Modifier
+    globalSphereState: List<CountryInfo>, modifier: Modifier = Modifier
 ) {
 ResultScreen(globalSphereState, modifier)
 }
 
 @Composable
-fun ResultScreen(countries : String, modifier: Modifier = Modifier) {
+fun ResultScreen(countries: List<CountryInfo>, modifier: Modifier = Modifier) {
     Box(contentAlignment = Alignment.Center, modifier = modifier) {
-        Text(text = " ")
+      Text(text = countries.toString())
     }
 
 }

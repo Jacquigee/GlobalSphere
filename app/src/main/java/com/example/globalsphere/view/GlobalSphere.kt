@@ -12,10 +12,10 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.globalsphere.R
 
 
@@ -29,7 +29,7 @@ import com.example.globalsphere.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GlobalSphere(modifier: Modifier = Modifier) {
+fun GlobalSphere() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -42,7 +42,8 @@ fun GlobalSphere(modifier: Modifier = Modifier) {
         ) {
             val globalSphereViewModel: GlobalSphereViewModel = viewModel()
             HomeScreen(
-               globalSphereState = globalSphereViewModel.globalSphereState)
+               globalSphereState = globalSphereViewModel.globalSphereState
+            )
         }
     }
 }
