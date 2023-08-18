@@ -1,5 +1,9 @@
 package com.example.globalsphere.network
 
+import com.example.globalsphere.data.CountryInfo
+import com.example.globalsphere.di.modules.NetworkingCountry
+import com.example.globalsphere.network.GlobalSphereAPI.retrofit
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -12,18 +16,14 @@ import retrofit2.http.GET
  * TIME        : 10:50 PM
  */
 
-private const val BASE_URL = "https://restcountries.com/v3.1/"
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create())
-    .baseUrl(BASE_URL)
-    .build()
+
 interface GlobalSphereApiService {
     @GET("all")
-    suspend fun getCountries(): String
+    suspend fun getCountries(): Response<List<CountryInfo>>
 
 }
 
-object GlobalSphereAPI{
+object GlobalSphereAPI : NetworkingCountry() {
     val retrofitService: GlobalSphereApiService by lazy {
         retrofit.create(GlobalSphereApiService::class.java)
     }

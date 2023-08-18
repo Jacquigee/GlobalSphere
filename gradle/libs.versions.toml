@@ -5,16 +5,19 @@ lifecycle-runtime-kts = "2.6.1"
 bom = "2022.10.00"
 android-gradle = "8.0.2"
 kotlin = "1.7.20"
+viewModel = "2.6.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 androidx-core-kts = { module = "androidx.core:core-ktx", version.ref = "core-kts" }
 androidx-lifecycle-runtime-kts = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-kts" }
+androidx-lifecycle-viewmodel-compose = {module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "viewModel"}
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "bom" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
+
 
 [bundles]
 compose = ["compose-ui", "compose-ui-graphics", 'compose-ui-preview', "compose-material3"]
