@@ -1,5 +1,8 @@
 package com.example.globalsphere.di.modules
 
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+
 /**
  * PROJECT NAME: GlobalSphere
  * USER        : jacqui
@@ -8,7 +11,11 @@ package com.example.globalsphere.di.modules
  * TIME        : 10:29 PM
  */
 
+private const val BASE_URL = "https://restcountries.com/v3.1/"
+open class NetworkingCountry {
 
-class NetworkingCountry {
-
+    val retrofit = Retrofit.Builder()
+        .addConverterFactory(MoshiConverterFactory.create())
+        .baseUrl(BASE_URL)
+        .build()
 }
