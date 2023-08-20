@@ -1,5 +1,6 @@
 package com.example.globalsphere.di.modules
 
+import com.example.globalsphere.network.GlobalSphereApiService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -19,3 +20,5 @@ open class NetworkingCountry {
         .baseUrl(BASE_URL)
         .build()
 }
+
+
