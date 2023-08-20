@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.globalsphere.data.CountryInfo
+import retrofit2.Response
 
 /**
  * PROJECT NAME: GlobalSphere
@@ -16,7 +17,8 @@ import com.example.globalsphere.data.CountryInfo
  */
 @Composable
 fun HomeScreen(
-    globalSphereState: List<CountryInfo>, modifier: Modifier = Modifier
+    //globalSphereState: Response<List<CountryInfo>>, modifier: Modifier = Modifier
+            globalSphereState: List<CountryInfo>, modifier: Modifier = Modifier
 ) {
 ResultScreen(globalSphereState, modifier)
 }
@@ -24,7 +26,7 @@ ResultScreen(globalSphereState, modifier)
 @Composable
 fun ResultScreen(countries: List<CountryInfo>, modifier: Modifier = Modifier) {
     Box(contentAlignment = Alignment.Center, modifier = modifier) {
-      Text(text = countries.toString())
+        Text(text = countries.toString())
     }
 
 }

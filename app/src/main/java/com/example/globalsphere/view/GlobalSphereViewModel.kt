@@ -1,7 +1,6 @@
 package com.example.globalsphere.view
 
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -20,9 +19,8 @@ import retrofit2.Response
  */
 class GlobalSphereViewModel : ViewModel() {
 
-    //    var globalSphereState: Response<List<CountryInfo>> by mutableStateListOf<>(List<CountryInfo>)
-//    var globalSphereState by mutableStateOf(listOf(CountryInfo))
-//        private set
+    var globalSphereState: List<CountryInfo> by mutableStateOf(emptyList())
+        private set
 
     init {
         getRestCountries()
@@ -31,7 +29,8 @@ class GlobalSphereViewModel : ViewModel() {
     fun getRestCountries(){
        viewModelScope.launch {
            val listResult = GlobalSphereAPI.retrofitService.getCountries()
-//           globalSphereState = listResult
+           globalSphereState = listResult
        }
     }
 }
+
