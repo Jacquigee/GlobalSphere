@@ -1,10 +1,16 @@
 package com.example.globalsphere.ui.screens
 
+import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.globalsphere.GlobalSphereApplication
 import com.example.globalsphere.data.NetworkGlobalSphereRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -23,7 +29,7 @@ sealed interface GlobalSphereState {
     object Error : GlobalSphereState
 }
 
-class GlobalSphereViewModel : ViewModel() {
+class GlobalSphereViewModel(private val globalSphereRepository: NetworkGlobalSphereRepository) : ViewModel() {
 
     var globalSphereState: GlobalSphereState by mutableStateOf(GlobalSphereState.Loading)
         private set
@@ -35,7 +41,6 @@ class GlobalSphereViewModel : ViewModel() {
     fun getRestCountries() {
        viewModelScope.launch {
            try {
-               val globalSphereRepository = NetworkGlobalSphereRepository(retrofitService)
                val listResult = globalSphereRepository.getCountries()
                globalSphereState =
                    GlobalSphereState.Success("Success: ${listResult.size} Countries retrieved")
@@ -43,6 +48,16 @@ class GlobalSphereViewModel : ViewModel() {
                GlobalSphereState.Error
            }
        }
+    }
+
+    companion object{
+        val Factory : ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val application = (this[APPLICATION_KEY] as GlobalSphereApplication)
+                val globalSphereRepository = application.container.globalSphereRepository
+                GlobalSphereViewModel(globalSphereRepository = globalSphereRepository as NetworkGlobalSphereRepository)
+            }
+        }
     }
 }
 
