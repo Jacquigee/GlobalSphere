@@ -35,7 +35,7 @@ class GlobalSphereViewModel : ViewModel() {
     fun getRestCountries() {
        viewModelScope.launch {
            try {
-               val globalSphereRepository = NetworkGlobalSphereRepository()
+               val globalSphereRepository = NetworkGlobalSphereRepository(retrofitService)
                val listResult = globalSphereRepository.getCountries()
                globalSphereState =
                    GlobalSphereState.Success("Success: ${listResult.size} Countries retrieved")

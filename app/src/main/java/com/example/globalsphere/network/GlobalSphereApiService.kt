@@ -19,7 +19,5 @@ interface GlobalSphereApiService {
 
 }
 object GlobalSphereAPI : NetworkingCountry() {
-    val retrofitService: GlobalSphereApiService by lazy {
-        retrofit.create(GlobalSphereApiService::class.java)
-    }
+
 }
