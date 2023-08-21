@@ -7,6 +7,7 @@ package com.example.globalsphere.data
  * DATE        : Aug, 8/10/23
  * TIME        : 1:33 PM
  */
+
 data class CountryName(
     val common: String,
     val official: String

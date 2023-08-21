@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.globalsphere.R
+import com.example.globalsphere.ui.screens.GlobalSphereViewModel
 
 
 /**
