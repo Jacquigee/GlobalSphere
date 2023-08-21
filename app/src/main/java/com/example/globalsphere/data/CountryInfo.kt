@@ -1,7 +1,11 @@
 package com.example.globalsphere.data
 
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class CountryInfo(
-    val name: CountryName,
+    @Contextual val name: CountryName,
     val capital: List<String>,
     val continents: List<String>,
     val flag: String,
