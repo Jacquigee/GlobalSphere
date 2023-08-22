@@ -1,6 +1,5 @@
 package com.example.globalsphere.ui.screens
 
-import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -41,9 +40,9 @@ class GlobalSphereViewModel(private val globalSphereRepository: NetworkGlobalSph
     fun getRestCountries() {
        viewModelScope.launch {
            try {
-               val listResult = globalSphereRepository.getCountries()
+               val result = globalSphereRepository.getCountries()[0]
                globalSphereState =
-                   GlobalSphereState.Success("Success: ${listResult.size} Countries retrieved")
+                   GlobalSphereState.Success("Success: ${result.name.common} has been retrieved")
            } catch (e: IOException) {
                GlobalSphereState.Error
            }
