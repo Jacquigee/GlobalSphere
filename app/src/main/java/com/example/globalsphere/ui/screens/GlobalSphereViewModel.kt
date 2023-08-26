@@ -23,9 +23,16 @@ import java.io.IOException
  */
 
 sealed interface GlobalSphereState {
-    data class Success(val countries: String) : GlobalSphereState
+    data class Success(val countries: Countries) : GlobalSphereState
     object Loading : GlobalSphereState
     object Error : GlobalSphereState
+
+    data class Countries(
+        val name: String,
+        val capital: String,
+        val flag: String
+    )
+
 }
 
 class GlobalSphereViewModel(private val globalSphereRepository: NetworkGlobalSphereRepository) : ViewModel() {
@@ -40,9 +47,10 @@ class GlobalSphereViewModel(private val globalSphereRepository: NetworkGlobalSph
     fun getRestCountries() {
        viewModelScope.launch {
            try {
-               val result = globalSphereRepository.getCountries()[0]
+               val result = globalSphereRepository.getCountries()
                globalSphereState =
-                   GlobalSphereState.Success("Success: ${result.name.common} has been retrieved")
+                   GlobalSphereState.Success( countries = GlobalSphereState.Countries(name = String(), capital = String(), flag = String()))
+
            } catch (e: IOException) {
                GlobalSphereState.Error
            }

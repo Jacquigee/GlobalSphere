@@ -2,12 +2,15 @@ package com.example.globalsphere.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,7 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.globalsphere.R
-import com.example.globalsphere.data.CountryInfo
+import com.example.globalsphere.components.SingleCountryListItem
 import com.example.globalsphere.ui.screens.GlobalSphereState
 
 /**
@@ -42,7 +45,7 @@ fun HomeScreen(
 fun LoadingScreen(modifier: Modifier = Modifier) {
     Image(
         modifier = modifier.size(200.dp),
-        painter = painterResource(R.drawable.baseline_downloading_24),
+        painter = painterResource(R.drawable.progress_activity_48px),
         contentDescription = stringResource(
             id = R.string.loading
         )
@@ -55,26 +58,20 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.baseline_error_24), contentDescription = ""
-        )
+        Icon(imageVector = Icons.Default.Warning, contentDescription = " ")
         Text(text = stringResource(R.string.error), modifier = Modifier.padding(16.dp))
     }
 }
 
 @Composable
-fun ResultScreen(countries: String, modifier: Modifier = Modifier) {
-    Box(contentAlignment = Alignment.Center, modifier = modifier) {
-        Text(text = countries.toString())
+fun ResultScreen(countries: GlobalSphereState.Countries, modifier: Modifier = Modifier) {
+//    Box(contentAlignment = Alignment.Center, modifier = modifier) {
+//        Text(text = countries.toString())
+//    }
+    LazyColumn( verticalArrangement = Arrangement.Center){
+        items(hashCode()){item ->
+            SingleCountryListItem(country = countries)
+        }
     }
 
-//    LazyColumn(modifier = modifier){
-//        items(countries){ country ->
-//            CountryRow(country)
-//        }
-//    }
-
 }
-
-@Composable
-private fun CountryRow(country: CountryInfo) = Unit
