@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -44,7 +45,8 @@ fun HomeScreen(
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
     Image(
-        modifier = modifier.size(200.dp),
+        contentScale = ContentScale.None,
+        modifier = modifier.size(1.dp),
         painter = painterResource(R.drawable.progress_activity_48px),
         contentDescription = stringResource(
             id = R.string.loading
@@ -68,8 +70,8 @@ fun ResultScreen(countries: GlobalSphereState.Countries, modifier: Modifier = Mo
 //    Box(contentAlignment = Alignment.Center, modifier = modifier) {
 //        Text(text = countries.toString())
 //    }
-    LazyColumn( verticalArrangement = Arrangement.Center){
-        items(hashCode()){item ->
+    LazyColumn( verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()){
+        items(hashCode()){
             SingleCountryListItem(country = countries)
         }
     }

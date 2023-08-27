@@ -2,6 +2,8 @@ package com.example.globalsphere.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,29 +29,32 @@ fun SingleCountryListItem(
     country: GlobalSphereState.Countries,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Row(
         modifier = modifier
-            .background(color = Color.Cyan, shape = MaterialTheme.shapes.large)
+            .fillMaxWidth()
+            .padding(8.dp)
+            .background(color = Color.LightGray, shape = MaterialTheme.shapes.large)
             .clip(MaterialTheme.shapes.large)
     ) {
         Text(
-            text = country.name,
-            modifier = Modifier.padding(16.dp),
-            color = Color.White,
-            fontSize = 22.sp
-        )
-        Text(
-            text = country.capital,
-            modifier = Modifier.padding(16.dp),
-            color = Color.White,
-            fontSize = 22.sp
-        )
-        Text(
             text = country.flag,
             modifier = Modifier.padding(16.dp),
-            color = Color.White,
             fontSize = 22.sp
         )
+        Column() {
+            Text(
+                text = country.name,
+                modifier = Modifier,
+                color = Color.Black,
+                fontSize = 20.sp
+            )
+            Text(
+                text = country.capital,
+                modifier = Modifier,
+                color = Color.Black,
+                fontSize = 18.sp
+            )
+        }
     }
 }
 
@@ -59,7 +64,7 @@ fun SingleCountryListPreview(){
     val country = GlobalSphereState.Countries(
         name = "Kenya", capital = "Nairobi", flag = ""
     )
-    Column() {
+    Column(modifier = Modifier.fillMaxWidth()) {
         SingleCountryListItem(country = country)
     }
 }
