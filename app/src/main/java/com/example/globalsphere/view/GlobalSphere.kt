@@ -41,7 +41,7 @@ fun GlobalSphere() {
                 .fillMaxSize()
                 .padding(it)
         ) {
-            val globalSphereViewModel: GlobalSphereViewModel = viewModel()
+            val globalSphereViewModel: GlobalSphereViewModel = viewModel(factory = GlobalSphereViewModel.Factory)
             HomeScreen(
                globalSphereState = globalSphereViewModel.globalSphereState
             )

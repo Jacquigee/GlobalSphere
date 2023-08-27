@@ -1,6 +1,6 @@
 package com.example.globalsphere.data
 
-import com.example.globalsphere.network.GlobalSphereAPI
+import com.example.globalsphere.network.GlobalSphereApiService
 
 /**
  * PROJECT NAME: GlobalSphere
@@ -13,8 +13,8 @@ interface GlobalSphereRepository {
     suspend fun getCountries(): List<CountryInfo>
 }
 
-class NetworkGlobalSphereRepository() : GlobalSphereRepository{
-    override suspend fun getCountries(): List<CountryInfo> {
-        return GlobalSphereAPI.retrofitService.getCountries()
-    }
+class NetworkGlobalSphereRepository(private val globalSphereApiService: GlobalSphereApiService) :
+    GlobalSphereRepository {
+    override suspend fun getCountries(): List<CountryInfo> = globalSphereApiService.getCountries()
+
 }
