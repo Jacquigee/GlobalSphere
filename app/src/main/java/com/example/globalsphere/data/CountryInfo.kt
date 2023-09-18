@@ -13,4 +13,5 @@ data class CountryInfo(
     val region: String,
     val startOfWeek: String,
     val timezones: List<String>,
+    @Contextual val coatOfArms: CoatOfArms
 )

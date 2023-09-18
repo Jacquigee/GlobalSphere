@@ -39,7 +39,8 @@ fun SingleCountryListItem(
         Text(
             text = country.flag,
             modifier = Modifier.padding(16.dp),
-            fontSize = 22.sp
+            fontSize = 22.sp,
+            color = Color.Black
         )
         Column() {
             Text(
@@ -65,6 +66,6 @@ fun SingleCountryListPreview(){
         name = "Kenya", capital = "Nairobi", flag = ""
     )
     Column(modifier = Modifier.fillMaxWidth()) {
-        SingleCountryListItem(country = country)
+        SingleCountryListItem(country = GlobalSphereState.Countries(name = "", capital = "", flag = ""))
     }
 }
