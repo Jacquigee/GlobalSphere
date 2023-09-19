@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Icon
@@ -66,13 +67,13 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ResultScreen(countries: GlobalSphereState.Countries, modifier: Modifier = Modifier) {
+fun ResultScreen(countries: List<GlobalSphereState.Countries>, modifier: Modifier = Modifier) {
 //    Box(contentAlignment = Alignment.Center, modifier = modifier) {
 //        Text(text = countries.toString())
 //    }
     LazyColumn( verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()){
-        items(hashCode()){
-            SingleCountryListItem(country = countries)
+        items(countries){
+            SingleCountryListItem(country = it)
         }
     }
 

@@ -23,7 +23,7 @@ import java.io.IOException
  */
 
 sealed interface GlobalSphereState {
-    data class Success(val countries: Countries) : GlobalSphereState
+    data class Success(val countries: List<Countries>) : GlobalSphereState
     object Loading : GlobalSphereState
     object Error : GlobalSphereState
 
@@ -49,7 +49,7 @@ class GlobalSphereViewModel(private val globalSphereRepository: NetworkGlobalSph
            try {
                val result = globalSphereRepository.getCountries()
                globalSphereState =
-                   GlobalSphereState.Success( countries = GlobalSphereState.Countries(name = String(), capital = String(), flag = String()))
+                   GlobalSphereState.Success( countries = result.map { GlobalSphereState.Countries(it.name.common, it.capital?.joinToString { it }?:" ", it.flag) })
 
            } catch (e: IOException) {
                GlobalSphereState.Error
