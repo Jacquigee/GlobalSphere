@@ -47,13 +47,13 @@ fun SingleCountryListItem(
                 text = country.name,
                 modifier = Modifier,
                 color = Color.Black,
-                fontSize = 20.sp
+                style = MaterialTheme.typography.titleLarge
             )
             Text(
                 text = country.capital,
                 modifier = Modifier,
                 color = Color.Black,
-                fontSize = 18.sp
+                style = MaterialTheme.typography.bodyMedium
             )
         }
     }
