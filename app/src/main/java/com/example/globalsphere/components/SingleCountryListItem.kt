@@ -2,6 +2,7 @@ package com.example.globalsphere.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -27,7 +28,8 @@ import com.example.globalsphere.ui.screens.GlobalSphereState
 @Composable
 fun SingleCountryListItem(
     country: GlobalSphereState.Countries,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    paddingValues: PaddingValues = PaddingValues(top = 32.dp, end = 16.dp, start = 16.dp)
 ) {
     Row(
         modifier = modifier
@@ -62,9 +64,6 @@ fun SingleCountryListItem(
 @Preview(showBackground = true)
 @Composable
 fun SingleCountryListPreview(){
-    val country = GlobalSphereState.Countries(
-        name = "Kenya", capital = "Nairobi", flag = ""
-    )
     Column(modifier = Modifier.fillMaxWidth()) {
         SingleCountryListItem(country = GlobalSphereState.Countries(name = "", capital = "", flag = ""))
     }
