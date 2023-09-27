@@ -1,15 +1,14 @@
 package com.example.globalsphere.ui.screens
 
+import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.globalsphere.GlobalSphereApplication
-import com.example.globalsphere.data.NetworkGlobalSphereRepository
+import com.example.globalsphere.data.AppContainer
+import com.example.globalsphere.data.DefaultAppContainer
+import com.example.globalsphere.data.GlobalSphereRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -22,7 +21,7 @@ import java.io.IOException
  */
 
 sealed interface MainViewModelState {
-    data class Success(val countries: List<Countries>) : MainViewModelState
+    data class Success(val countries: List<Countries>, val selectedCountry: Countries?) : MainViewModelState
     object Loading : MainViewModelState
     object Error :  MainViewModelState
 
@@ -35,19 +34,24 @@ sealed interface MainViewModelState {
         )
 
 }
-class MainViewModel(private val globalSphereRepository: NetworkGlobalSphereRepository) : ViewModel() {
+
+class MainViewModel(val app: Application) : AndroidViewModel(app) {
+
+    private val container: AppContainer = DefaultAppContainer()
+    private val repository: GlobalSphereRepository = container.globalSphereRepository
     var mainViewModelState: MainViewModelState by mutableStateOf(MainViewModelState.Loading)
         private set
 
     init {
         getRestCountries()
     }
+
     fun getRestCountries() {
         viewModelScope.launch {
             try {
-                val result = globalSphereRepository.getCountries()
+                val result = repository.getCountries()
                 mainViewModelState =
-                    MainViewModelState.Success( countries = result.map { MainViewModelState.Countries(it.name.common, it.capital?.joinToString { it }?:" ", it.flag) })
+                    MainViewModelState.Success( countries = result.map { MainViewModelState.Countries(it.name.common, it.capital?.joinToString { it }?:" ", it.flag) }, null)
 
             } catch (e: IOException) {
                 MainViewModelState.Error
@@ -55,13 +59,8 @@ class MainViewModel(private val globalSphereRepository: NetworkGlobalSphereRepos
         }
     }
 
-    companion object{
-        val Factory : ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as GlobalSphereApplication)
-                val globalSphereRepository = application.container.globalSphereRepository
-                MainViewModel(globalSphereRepository = globalSphereRepository as NetworkGlobalSphereRepository)
-            }
-        }
+    fun selectedCountry(country: MainViewModelState.Countries){
+        mainViewModelState = (mainViewModelState as MainViewModelState.Success).copy(selectedCountry = country)
     }
+
 }

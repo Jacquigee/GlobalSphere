@@ -9,7 +9,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import com.example.globalsphere.ui.screens.MainViewModel
 import com.example.globalsphere.ui.screens.MainViewModelState
 import com.example.globalsphere.ui.theme.GlobalSphereTheme
@@ -21,9 +20,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val state: MainViewModelState = mainViewModel.mainViewModelState
+
             GlobalSphereTheme {
                 Surface(tonalElevation = 5.dp) {
-                    GlobalSphere(state)
+                    GlobalSphere(state){mainViewModel.selectedCountry(it)}
                 }
             }
         }
@@ -40,6 +40,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GlobalSpherePreview(){
     GlobalSphereTheme {
-        GlobalSphere(MainViewModelState.Loading)
+        GlobalSphere(MainViewModelState.Loading){}
     }
 }
