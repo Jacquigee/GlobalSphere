@@ -15,9 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.globalsphere.R
-import com.example.globalsphere.ui.screens.GlobalSphereViewModel
+import com.example.globalsphere.ui.screens.MainViewModelState
 
 
 /**
@@ -30,7 +29,11 @@ import com.example.globalsphere.ui.screens.GlobalSphereViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GlobalSphere() {
+fun GlobalSphere(
+    state: MainViewModelState,
+    countryUpdated: (MainViewModelState.Countries) -> Unit
+) {
+
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -41,9 +44,9 @@ fun GlobalSphere() {
                 .fillMaxSize()
                 .padding(it)
         ) {
-            val globalSphereViewModel: GlobalSphereViewModel = viewModel(factory = GlobalSphereViewModel.Factory)
             HomeScreen(
-               globalSphereState = globalSphereViewModel.globalSphereState
+                state = state,
+                countryUpdated = countryUpdated
             )
         }
     }
@@ -66,5 +69,5 @@ fun GlobalSphereTopAppBar(scrollBehavior: TopAppBarScrollBehavior, modifier: Mod
 @Preview(showBackground = true, showSystemUi = true, name = "Global Sphere")
 @Composable
 fun GlobalSpherePreview() {
-    GlobalSphere()
+    GlobalSphere(MainViewModelState.Loading){}
 }

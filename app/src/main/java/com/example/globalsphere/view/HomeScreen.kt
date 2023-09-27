@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.globalsphere.R
 import com.example.globalsphere.components.SingleCountryListItem
-import com.example.globalsphere.ui.screens.GlobalSphereState
+import com.example.globalsphere.ui.screens.MainViewModelState
 
 /**
  * PROJECT NAME: GlobalSphere
@@ -33,14 +33,13 @@ import com.example.globalsphere.ui.screens.GlobalSphereState
  */
 @Composable
 fun HomeScreen(
-    globalSphereState: GlobalSphereState, modifier: Modifier = Modifier
+    state:MainViewModelState, modifier: Modifier = Modifier, countryUpdated: (MainViewModelState.Countries) -> Unit
 ) {
-    when (globalSphereState) {
-        is GlobalSphereState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
-        is GlobalSphereState.Success ->
-            ResultScreen(globalSphereState.countries, modifier = modifier.fillMaxWidth())
+    when (state) {
 
-        is GlobalSphereState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
+        MainViewModelState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
+        MainViewModelState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+        is MainViewModelState.Success -> ResultScreen(state.countries, modifier = modifier.fillMaxWidth(), countryUpdated)
     }
 }
 @Composable
@@ -67,13 +66,12 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ResultScreen(countries: List<GlobalSphereState.Countries>, modifier: Modifier = Modifier) {
-//    Box(contentAlignment = Alignment.Center, modifier = modifier) {
-//        Text(text = countries.toString())
-//    }
+fun ResultScreen(countries: List<MainViewModelState.Countries>, modifier: Modifier = Modifier, onCountryUpdated: (MainViewModelState.Countries) -> Unit) {
     LazyColumn( verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()){
         items(countries){
-            SingleCountryListItem(country = it)
+            SingleCountryListItem(country = it){
+                onCountryUpdated(it)
+            }
         }
     }
 
