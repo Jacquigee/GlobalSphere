@@ -7,7 +7,7 @@ package com.example.globalsphere.ui.screens
  * DATE        : Sept, 9/27/23
  * TIME        : 10:41 PM
  */
-sealed class ScreensNav(route : String){
+sealed class ScreensNav(val route : String){
     object Home: ScreensNav(route = "home_screen")
     object Detail: ScreensNav(route = "detail_screen")
 }
