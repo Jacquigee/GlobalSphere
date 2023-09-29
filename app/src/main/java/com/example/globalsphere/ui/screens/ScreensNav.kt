@@ -8,6 +8,6 @@ package com.example.globalsphere.ui.screens
  * TIME        : 10:41 PM
  */
 sealed class ScreensNav(val route : String){
-    object Home: ScreensNav(route = "home_screen")
-    object Detail: ScreensNav(route = "detail_screen")
+    object Countries: ScreensNav(route = "countries_screen")
+    object Country: ScreensNav(route = "country_screen")
 }
