@@ -18,15 +18,17 @@ import com.example.globalsphere.view.HomeScreen
 fun SetupNavGraph(
     navController: NavHostController,
     state: MainViewModelState,
-    countryUpdated: (MainViewModelState.Countries) -> Unit
+    countryUpdated: (MainViewModelState.Countries) -> Unit,
+
 ) {
 
     NavHost(
         navController = navController,
-        startDestination = ScreensNav.Home.route
+        startDestination = ScreensNav.Countries.route
     ) {
-        composable(route = ScreensNav.Home.route) {
+        composable(route = ScreensNav.Countries.route) {
             HomeScreen(state = state, countryUpdated = countryUpdated)
         }
+
     }
 }
