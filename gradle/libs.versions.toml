@@ -1,16 +1,26 @@
 [versions]
-activity-compose = "1.7.2"
-core-kts = "1.10.1"
-lifecycle-runtime-kts = "2.6.1"
-bom = "2022.10.00"
+activity-compose = "1.8.0"
+androidx-junit = "1.1.5"
+core-kts = "1.12.0"
+espressoCore = "3.5.1"
+junit = "4.13.2"
+kotlinxCoroutinesTest = "1.7.1"
+kotlinxSerializationJson = "1.5.1"
+lifecycle-runtime-kts = "2.6.2"
+bom = "2023.10.01"
 android-gradle = "8.1.1"
 kotlin = "1.7.20"
-viewModel = "2.6.1"
-navVersion = "2.7.3"
+material = "1.10.0"
+viewModel = "2.6.2"
+navVersion = "2.7.5"
+retrofit = "2.9.0"
+
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 androidx-core-kts = { module = "androidx.core:core-ktx", version.ref = "core-kts" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
 androidx-lifecycle-runtime-kts = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-kts" }
 androidx-lifecycle-viewmodel-compose = {module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "viewModel"}
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "bom" }
@@ -21,6 +31,13 @@ compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-ui-navigation = {module = "androidx.navigation:navigation-ui-ktx", version.ref = "navVersion"}
 androidx-compose-navigation = {module = "androidx.navigation:navigation-compose", version.ref = "navVersion"}
 androidx-feature-navigation = {module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref = "navVersion"}
+junit = { module = "junit:junit", version.ref = "junit" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+squareup-retrofit2 = {module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit"}
+squareup-retrofit2-converter-moshi = {module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit"}
+
 
 
 [bundles]
