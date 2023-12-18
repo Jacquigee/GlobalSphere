@@ -68,9 +68,7 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun ResultScreen(countries: List<GlobalSphereState.Countries>, modifier: Modifier = Modifier) {
-//    Box(contentAlignment = Alignment.Center, modifier = modifier) {
-//        Text(text = countries.toString())
-//    }
+
     LazyColumn( verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()){
         items(countries){
             SingleCountryListItem(country = it)
