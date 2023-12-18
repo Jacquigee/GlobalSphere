@@ -30,7 +30,9 @@ sealed interface GlobalSphereState {
     data class Countries(
         val name: String,
         val capital: String,
-        val flag: String
+        val flag: String,
+
+
     )
 
 }
