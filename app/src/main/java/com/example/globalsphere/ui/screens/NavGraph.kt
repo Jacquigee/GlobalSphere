@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.globalsphere.view.HomeScreen
 
 /**
  * PROJECT NAME: GlobalSphere
@@ -15,7 +14,7 @@ import com.example.globalsphere.view.HomeScreen
  */
 
 @Composable
-fun SetupNavGraph(
+fun NavGraph(
     navController: NavHostController,
     state: MainViewModelState,
     countryUpdated: (MainViewModelState.Countries) -> Unit,
@@ -24,11 +23,13 @@ fun SetupNavGraph(
 
     NavHost(
         navController = navController,
-        startDestination = ScreensNav.Countries.route
+        startDestination = ScreensNav.Home.route
     ) {
-        composable(route = ScreensNav.Countries.route) {
-            HomeScreen(state = state, countryUpdated = countryUpdated)
+        composable(route = ScreensNav.Home.route) {
+//            HomeScreen(state = state, countryUpdated = countryUpdated)
+            //HomeScreen(globalSphereState = )
         }
 
     }
+
 }

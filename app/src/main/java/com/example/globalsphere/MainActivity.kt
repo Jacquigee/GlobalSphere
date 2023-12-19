@@ -6,9 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.globalsphere.ui.theme.GlobalSphereTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +14,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             GlobalSphereTheme {
                 Surface(tonalElevation = 5.dp) {
-                    MainScreen()
+                    GlobalSphere()
                 }
             }
         }
@@ -25,12 +22,6 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen() {
-    val navController = rememberNavController()
+fun GlobalSphere() {
 
-    NavHost(navController = navController, startDestination = "home") {
-        composable("home") {
-            //HomeScreen(globalSphereState = GlobalSphereState)
-        }
-    }
 }
