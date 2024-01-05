@@ -15,3 +15,8 @@ data class CountryInfo(
     val timezones: List<String>,
     @Contextual val coatOfArms: CoatOfArms
 )
+
+data class CoatOfArms(
+    val png: String,
+    val svg: String
+)

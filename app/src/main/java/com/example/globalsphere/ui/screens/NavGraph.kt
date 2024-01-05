@@ -26,8 +26,7 @@ fun NavGraph(
         startDestination = ScreensNav.Home.route
     ) {
         composable(route = ScreensNav.Home.route) {
-//            HomeScreen(state = state, countryUpdated = countryUpdated)
-            //HomeScreen(globalSphereState = )
+            //HomeScreen(state = state, countryUpdated = countryUpdated)
         }
 
     }
