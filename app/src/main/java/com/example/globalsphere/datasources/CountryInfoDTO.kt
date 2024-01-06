@@ -1,4 +1,4 @@
-package com.example.globalsphere.data
+package com.example.globalsphere.datasources
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
@@ -16,7 +16,12 @@ data class CountryInfo(
     @Contextual val coatOfArms: CoatOfArms
 )
 
+data class CountryName(
+    val common: String,
+    val official: String
+)
 data class CoatOfArms(
     val png: String,
     val svg: String
 )
+

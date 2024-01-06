@@ -1,6 +1,5 @@
 package com.example.globalsphere.view
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,13 +40,9 @@ fun GlobalSphere(
     ) {
         Surface(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(it)
         ) {
-            HomeScreen(
-                state = state,
-                countryUpdated = countryUpdated
-            )
+//            HomeScreen(globalSphereState = )
         }
     }
 }
