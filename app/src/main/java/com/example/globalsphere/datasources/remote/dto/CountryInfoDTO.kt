@@ -1,4 +1,4 @@
-package com.example.globalsphere.datasources
+package com.example.globalsphere.datasources.remote.dto
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable

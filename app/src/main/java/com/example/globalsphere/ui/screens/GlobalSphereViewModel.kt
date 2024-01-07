@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.globalsphere.GlobalSphereApplication
-import com.example.globalsphere.data.NetworkGlobalSphereRepository
+import com.example.globalsphere.data.repositories.NetworkGlobalSphereRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 

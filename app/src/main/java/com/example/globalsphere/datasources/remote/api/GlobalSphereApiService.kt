@@ -1,6 +1,6 @@
-package com.example.globalsphere.network
+package com.example.globalsphere.datasources.remote.api
 
-import com.example.globalsphere.datasources.CountryInfo
+import com.example.globalsphere.datasources.remote.dto.CountryInfo
 import retrofit2.http.GET
 
 /**

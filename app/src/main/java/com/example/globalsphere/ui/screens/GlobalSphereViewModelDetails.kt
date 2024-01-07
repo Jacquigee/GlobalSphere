@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.globalsphere.data.NetworkGlobalSphereRepository
+import com.example.globalsphere.data.repositories.NetworkGlobalSphereRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 

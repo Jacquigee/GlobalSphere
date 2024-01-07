@@ -1,7 +1,7 @@
-package com.example.globalsphere.data
+package com.example.globalsphere.data.repositories
 
-import com.example.globalsphere.datasources.CountryInfo
-import com.example.globalsphere.network.GlobalSphereApiService
+import com.example.globalsphere.datasources.remote.dto.CountryInfo
+import com.example.globalsphere.datasources.remote.api.GlobalSphereApiService
 
 /**
  * PROJECT NAME: GlobalSphere

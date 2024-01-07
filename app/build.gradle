@@ -72,18 +72,28 @@ dependencies {
     // Navigation
    implementation(libs.navigation)
 
-    //Coroutines
+    // Coroutines
     implementation(libs.kotlinx.coroutines)
     testImplementation(libs.kotlinx.coroutines.test)
 
-    //Retrofit + Moshi
+    // Ktor
+    implementation(libs.bundles.ktor)
+    testImplementation(libs.ktor.client.mock)
+
+    // voyager
+    implementation(libs.bundles.voyager)
+
+    // coil
+    implementation(libs.bundles.coil)
+
+    // Retrofit + Moshi
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
 
     // Kotlin serialization
     implementation(libs.kotlinx.serialization.json)
 
-    //Hilt
+    // Hilt
     implementation(libs.bundles.hilt)
     ksp(libs.androidx.hilt.compiler)
     ksp(libs.dagger.hilt.compiler)

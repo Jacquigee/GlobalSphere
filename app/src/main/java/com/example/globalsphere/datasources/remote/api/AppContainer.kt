@@ -1,6 +1,7 @@
-package com.example.globalsphere.data
+package com.example.globalsphere.datasources.remote.api
 
-import com.example.globalsphere.network.GlobalSphereApiService
+import com.example.globalsphere.data.repositories.GlobalSphereRepository
+import com.example.globalsphere.data.repositories.NetworkGlobalSphereRepository
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 

@@ -1,8 +1,8 @@
 [versions]
-#Gradle
+# Gradle
 android-gradle = "8.2.1"
 
-#android
+# android
 activity-compose = "1.8.2"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
@@ -13,20 +13,28 @@ compose-bom = "2023.10.01"
 viewModel = "2.6.2"
 nav = "2.7.6"
 
-#ksp
+# ksp
 ksp = "1.9.10-1.0.13"
 
-#Kotlin
+# Kotlin
+ktor = "2.3.1"
 kotlin = "1.9.10"
 kotlinx-coroutines = "1.7.3"
 kotlinx-serialization = "1.5.1"
 
-#dagger-hilt
+# dagger-hilt
 androidx-hilt = "1.1.0"
 dagger-hilt = "2.48"
 
-#retrofit
+# retrofit
 retrofit = "2.9.0"
+
+# Other
+coil = "2.4.0"
+okhttp = "4.11.0"
+timber = "5.0.1"
+voyager = "1.0.0-rc10"
+
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
@@ -45,30 +53,70 @@ ui-tooling = {group = "androidx.compose.ui", name = "ui-tooling"}
 ui-test-manifest = {group = "androidx.compose.ui", name = "ui-test-manifest"}
 material3 = { group = "androidx.compose.material3", name = "material3" }
 
-#kotlin
+# kotlin
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines"}
 
-#Serialization
+# Serialization
 kotlinx-serialization-json = {group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization"}
 
-#Navigation
+
+# ktor
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
+ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+
+# Navigation
 navigation = {module = "androidx.navigation:navigation-compose", version.ref = "nav"}
 
-#dagger-hilt
+# dagger-hilt
 dagger-hilt = {group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt"}
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger-hilt" }
 androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "androidx-hilt" }
 androidx-hilt = { group = "androidx.hilt", name = "hilt-common", version.ref = "androidx-hilt" }
 
-#retrofit + moshi
+
+# voyager
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
+voyager-androidx = { module = "cafe.adriel.voyager:voyager-androidx", version.ref = "voyager" }
+voyager-hilt = { module = "cafe.adriel.voyager:voyager-hilt", version.ref = "voyager" }
+
+# coil
+coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
+
+
+# retrofit + moshi
 retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 converter-moshi = {group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit"}
 
 
+# other
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
 [bundles]
 hilt = [
 "dagger-hilt", "androidx-hilt"
+]
+
+ktor = [
+    "ktor-client-core", "ktor-client-okhttp", "ktor-content-negotiation", "ktor-logging",
+    "ktor-okhttp-logging", "ktor-serialization-json"
+]
+
+voyager = [
+    "voyager-androidx", "voyager-hilt", "voyager-navigator", "voyager-transitions"
+]
+
+coil = [
+    "coil-kt", "coil-kt-compose", "coil-kt-svg"
 ]
 
 [plugins]

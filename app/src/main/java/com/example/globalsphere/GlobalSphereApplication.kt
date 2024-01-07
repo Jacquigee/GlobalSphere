@@ -1,8 +1,8 @@
 package com.example.globalsphere
 
 import android.app.Application
-import com.example.globalsphere.data.AppContainer
-import com.example.globalsphere.data.DefaultAppContainer
+import com.example.globalsphere.datasources.remote.api.AppContainer
+import com.example.globalsphere.datasources.remote.api.DefaultAppContainer
 
 /**
  * PROJECT NAME: GlobalSphere
