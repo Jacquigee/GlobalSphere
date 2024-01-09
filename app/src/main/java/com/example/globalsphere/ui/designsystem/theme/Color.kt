@@ -1,4 +1,4 @@
-package com.example.globalsphere.ui.theme
+package com.example.globalsphere.ui.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

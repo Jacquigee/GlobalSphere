@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.globalsphere.R
-import com.example.globalsphere.ui.theme.GlobalSphereTheme
+import com.example.globalsphere.ui.designsystem.theme.GlobalSphereTheme
 
 /**
  * PROJECT NAME: GlobalSphere

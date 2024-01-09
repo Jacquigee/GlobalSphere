@@ -3,6 +3,7 @@ package com.example.globalsphere
 import android.app.Application
 import com.example.globalsphere.datasources.remote.api.AppContainer
 import com.example.globalsphere.datasources.remote.api.DefaultAppContainer
+import dagger.hilt.android.HiltAndroidApp
 
 /**
  * PROJECT NAME: GlobalSphere
@@ -11,6 +12,7 @@ import com.example.globalsphere.datasources.remote.api.DefaultAppContainer
  * DATE        : Aug, 8/21/23
  * TIME        : 11:05 PM
  */
+@HiltAndroidApp
 class GlobalSphereApplication : Application() {
     lateinit var container: AppContainer
     override fun onCreate() {

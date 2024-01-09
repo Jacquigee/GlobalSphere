@@ -1,4 +1,4 @@
-package com.example.globalsphere.view
+package com.example.globalsphere.ui.presentation.view
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -15,7 +15,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.globalsphere.R
-import com.example.globalsphere.ui.screens.MainViewModelState
+import com.example.globalsphere.ui.presentation.screens.MainViewModelState
 
 
 /**

@@ -1,4 +1,4 @@
-package com.example.globalsphere.ui.screens
+package com.example.globalsphere.ui.presentation.screens
 
 import android.app.Application
 import androidx.compose.runtime.getValue
@@ -21,9 +21,10 @@ import java.io.IOException
  */
 
 sealed interface MainViewModelState {
-    data class Success(val countries: List<Countries>, val selectedCountry: Countries?) : MainViewModelState
+    data class Success(val countries: List<Countries>, val selectedCountry: Countries?) :
+        MainViewModelState
     object Loading : MainViewModelState
-    object Error :  MainViewModelState
+    object Error : MainViewModelState
 
     data class Countries(
         val name: String,
@@ -51,7 +52,13 @@ class MainViewModel(val app: Application) : AndroidViewModel(app) {
             try {
                 val result = repository.getCountries()
                 mainViewModelState =
-                    MainViewModelState.Success( countries = result.map { MainViewModelState.Countries(it.name.common, it.capital?.joinToString { it }?:" ", it.flag) }, null)
+                    MainViewModelState.Success(countries = result.map {
+                        MainViewModelState.Countries(
+                            it.name.common,
+                            it.capital?.joinToString { it } ?: " ",
+                            it.flag
+                        )
+                    }, null)
 
             } catch (e: IOException) {
                 MainViewModelState.Error

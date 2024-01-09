@@ -1,4 +1,4 @@
-package com.example.globalsphere.ui.screens
+package com.example.globalsphere.ui.presentation.screens
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,7 +19,7 @@ import java.io.IOException
 
 sealed interface GlobalSphereDetailsState {
 
-    data class Success(val countryDetails: List<GlobalSphereDetailsState.CountryDetails>) :
+    data class Success(val countryDetails: List<CountryDetails>) :
         GlobalSphereDetailsState
 
     object Loading : GlobalSphereDetailsState

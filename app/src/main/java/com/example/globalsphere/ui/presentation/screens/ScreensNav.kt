@@ -1,4 +1,4 @@
-package com.example.globalsphere.ui.screens
+package com.example.globalsphere.ui.presentation.screens
 
 /**
  * PROJECT NAME: GlobalSphere

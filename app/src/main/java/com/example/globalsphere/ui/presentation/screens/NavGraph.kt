@@ -1,4 +1,4 @@
-package com.example.globalsphere.ui.screens
+package com.example.globalsphere.ui.presentation.screens
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -19,7 +19,7 @@ fun NavGraph(
     state: MainViewModelState,
     countryUpdated: (MainViewModelState.Countries) -> Unit,
 
-) {
+    ) {
 
     NavHost(
         navController = navController,

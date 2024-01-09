@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.globalsphere.ui.screens.GlobalSphereState
+import com.example.globalsphere.ui.presentation.screens.GlobalSphereState
 
 /**
  * PROJECT NAME: GlobalSphere

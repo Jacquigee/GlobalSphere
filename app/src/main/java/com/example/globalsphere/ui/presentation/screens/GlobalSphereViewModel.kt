@@ -1,4 +1,4 @@
-package com.example.globalsphere.ui.screens
+package com.example.globalsphere.ui.presentation.screens
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,7 +51,13 @@ class GlobalSphereViewModel(private val globalSphereRepository: NetworkGlobalSph
            try {
                val result = globalSphereRepository.getCountries()
                globalSphereState =
-                   GlobalSphereState.Success( countries = result.map { GlobalSphereState.Countries(it.name.common, it.capital?.joinToString { it }?:" ", it.flag) })
+                   GlobalSphereState.Success(countries = result.map {
+                       GlobalSphereState.Countries(
+                           it.name.common,
+                           it.capital?.joinToString { it } ?: " ",
+                           it.flag
+                       )
+                   })
 
            } catch (e: IOException) {
                GlobalSphereState.Error

@@ -1,4 +1,4 @@
-package com.example.globalsphere.view
+package com.example.globalsphere.ui.presentation.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.globalsphere.R
 import com.example.globalsphere.components.SingleCountryListItem
-import com.example.globalsphere.ui.screens.GlobalSphereState
+import com.example.globalsphere.ui.presentation.screens.GlobalSphereState
 
 /**
  * PROJECT NAME: GlobalSphere
