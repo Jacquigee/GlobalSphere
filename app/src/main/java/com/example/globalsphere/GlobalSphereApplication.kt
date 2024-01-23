@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.globalsphere.datasources.remote.api.AppContainer
 import com.example.globalsphere.datasources.remote.api.DefaultAppContainer
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 
 /**
  * PROJECT NAME: GlobalSphere
@@ -18,5 +19,10 @@ class GlobalSphereApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         container = DefaultAppContainer()
+        initializeTimber()
+    }
+
+    private fun initializeTimber(){
+        Timber.plant(Timber.DebugTree())
     }
 }

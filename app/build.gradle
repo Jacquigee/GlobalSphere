@@ -97,4 +97,7 @@ dependencies {
     implementation(libs.bundles.hilt)
     ksp(libs.androidx.hilt.compiler)
     ksp(libs.dagger.hilt.compiler)
+
+    // Timber
+    implementation(libs.timber)
 }
