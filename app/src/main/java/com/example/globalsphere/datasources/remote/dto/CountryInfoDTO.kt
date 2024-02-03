@@ -16,10 +16,13 @@ data class CountryInfo(
     @Contextual val coatOfArms: CoatOfArms
 )
 
+@Serializable
 data class CountryName(
     val common: String,
     val official: String
 )
+
+@Serializable
 data class CoatOfArms(
     val png: String,
     val svg: String
