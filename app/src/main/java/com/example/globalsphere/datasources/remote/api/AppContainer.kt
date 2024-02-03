@@ -17,7 +17,7 @@ interface AppContainer {
 }
 
 class DefaultAppContainer : AppContainer {
-
+    //Retrofit
     private val baseUrl = "https://restcountries.com/v3.1/"
 
     private val retrofit = Retrofit.Builder()
