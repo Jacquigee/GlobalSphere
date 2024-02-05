@@ -1,20 +1,15 @@
-package com.example.globalsphere.datasources.remote.api
+package com.example.globalsphere.data.domain.repositories
 
 import com.example.globalsphere.datasources.remote.dto.CountryInfoDTO
 import com.example.globalsphere.datasources.remote.helpers.NetworkResult
-import retrofit2.http.GET
 
 /**
  * PROJECT NAME: GlobalSphere
  * USER        : jacqui
  * EMAIL       : gitaujaquiline@gmail.com
- * DATE        : Aug, 8/13/23
- * TIME        : 10:50 PM
+ * DATE        : Aug, 8/21/23
+ * TIME        : 10:00 PM
  */
-
-
-interface GlobalSphereApiService {
-    @GET("all")
+interface GlobalSphereRepository {
     suspend fun getCountries(): NetworkResult<CountryInfoDTO>
-
 }

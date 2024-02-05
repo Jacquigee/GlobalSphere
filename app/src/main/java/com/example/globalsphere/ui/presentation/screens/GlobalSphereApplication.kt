@@ -1,9 +1,6 @@
-package com.example.globalsphere
+package com.example.globalsphere.ui.presentation.screens
 
 import android.app.Application
-import com.example.globalsphere.datasources.remote.api.AppContainer
-import com.example.globalsphere.datasources.remote.api.DefaultAppContainer
-import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 /**
@@ -13,12 +10,9 @@ import timber.log.Timber
  * DATE        : Aug, 8/21/23
  * TIME        : 11:05 PM
  */
-@HiltAndroidApp
-class GlobalSphereApplication : Application() {
-    lateinit var container: AppContainer
+open class GlobalSphereApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        container = DefaultAppContainer()
         initializeTimber()
     }
 

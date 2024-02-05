@@ -1,16 +1,14 @@
 package com.example.globalsphere.ui.presentation.screens
 
-import android.app.Application
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.globalsphere.datasources.remote.api.AppContainer
-import com.example.globalsphere.datasources.remote.api.DefaultAppContainer
-import com.example.globalsphere.data.repositories.GlobalSphereRepository
+import com.example.globalsphere.data.domain.repositories.GlobalSphereRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
 /**
  * PROJECT NAME: GlobalSphere
@@ -21,53 +19,61 @@ import java.io.IOException
  */
 
 sealed interface MainViewModelState {
-    data class Success(val countries: List<Countries>, val selectedCountry: Countries?) :
-        MainViewModelState
-    object Loading : MainViewModelState
-    object Error : MainViewModelState
 
     data class Countries(
         val name: String,
         val capital: String,
         val flag: String,
+    )
 
-
-        )
+    data class Success(val countries: List<Countries>, val selectedCountry: Countries?) :
+        MainViewModelState
+    object Loading : MainViewModelState
+    object Error : MainViewModelState
 
 }
 
-class MainViewModel(val app: Application) : AndroidViewModel(app) {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repository: GlobalSphereRepository
+): ViewModel() {
 
-    private val container: AppContainer = DefaultAppContainer()
-    private val repository: GlobalSphereRepository = container.globalSphereRepository
-    var mainViewModelState: MainViewModelState by mutableStateOf(MainViewModelState.Loading)
-        private set
-
+    private val _mainViewModelState = MutableLiveData<MainViewModelState>()
+    val mainViewModelState: LiveData<MainViewModelState> get() = _mainViewModelState
     init {
+        _mainViewModelState.value = MainViewModelState.Loading
         getRestCountries()
     }
 
+
+ private fun handleSuccess(result: List<MainViewModelState.Countries>){
+     val countries = result.map {
+         MainViewModelState.Countries(
+             it.name,
+             it.capital,
+             it.flag
+         )
+     }
+     _mainViewModelState.value = MainViewModelState.Success(countries, null)
+ }
+
+    private fun handleError(){
+        _mainViewModelState.value = MainViewModelState.Error
+    }
     fun getRestCountries() {
         viewModelScope.launch {
             try {
-                val result = repository.getCountries()
-                mainViewModelState =
-                    MainViewModelState.Success(countries = result.map {
-                        MainViewModelState.Countries(
-                            it.name.common,
-                            it.capital?.joinToString { it } ?: " ",
-                            it.flag
-                        )
-                    }, null)
+                val result = listOf( MainViewModelState.Countries(name = "", capital = "", flag = ""))
+                handleSuccess(result)
 
             } catch (e: IOException) {
-                MainViewModelState.Error
+                handleError()
             }
         }
     }
 
     fun selectedCountry(country: MainViewModelState.Countries){
-        mainViewModelState = (mainViewModelState as MainViewModelState.Success).copy(selectedCountry = country)
+        _mainViewModelState.value = (mainViewModelState as MainViewModelState.Success).copy(selectedCountry = country)
     }
 
 }

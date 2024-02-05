@@ -1,18 +1,14 @@
 package com.example.globalsphere.ui.presentation.screens
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.globalsphere.GlobalSphereApplication
-import com.example.globalsphere.data.repositories.NetworkGlobalSphereRepository
+import com.example.globalsphere.data.aggregator.repository.GlobalShereRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
 /**
  * PROJECT NAME: GlobalSphere
@@ -37,42 +33,57 @@ sealed interface GlobalSphereState {
 
 }
 
-class GlobalSphereViewModel(private val globalSphereRepository: NetworkGlobalSphereRepository) : ViewModel() {
+@HiltViewModel
+class GlobalSphereViewModel @Inject constructor(
+    private val globalSphereRepository: GlobalShereRepositoryImpl
+) : ViewModel() {
 
-    var globalSphereState: GlobalSphereState by mutableStateOf(GlobalSphereState.Loading)
-        private set
+    private val _globalSphereState = MutableLiveData<GlobalSphereState>()
+    val globalSphereState: LiveData<GlobalSphereState> get() = _globalSphereState
+
 
     init {
+        _globalSphereState.value = GlobalSphereState.Loading
         getRestCountries()
     }
 
-    fun getRestCountries() {
-       viewModelScope.launch {
-           try {
-               val result = globalSphereRepository.getCountries()
-               globalSphereState =
-                   GlobalSphereState.Success(countries = result.map {
-                       GlobalSphereState.Countries(
-                           it.name.common,
-                           it.capital?.joinToString { it } ?: " ",
-                           it.flag
-                       )
-                   })
 
-           } catch (e: IOException) {
-               GlobalSphereState.Error
-           }
-       }
+    private fun handleSuccess(result: List<GlobalSphereState.Countries>) {
+        val countries = result.map {
+            GlobalSphereState.Countries(
+                it.name,
+                it.capital,
+                it.flag
+            )
+        }
+        _globalSphereState.value = GlobalSphereState.Success(countries)
     }
 
-    companion object{
-        val Factory : ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val application = (this[APPLICATION_KEY] as GlobalSphereApplication)
-                val globalSphereRepository = application.container.globalSphereRepository
-                GlobalSphereViewModel(globalSphereRepository = globalSphereRepository as NetworkGlobalSphereRepository)
+    private fun handleError() {
+        _globalSphereState.value = GlobalSphereState.Error
+    }
+
+    fun getRestCountries() {
+        viewModelScope.launch {
+            try {
+                val result = listOf(GlobalSphereState.Countries(name = "", capital = "", flag = ""))
+                handleSuccess(result)
+
+            } catch (e: IOException) {
+                handleError()
             }
         }
     }
 }
+
+//    companion object{
+//        val Factory : ViewModelProvider.Factory = viewModelFactory {
+//            initializer {
+//                val application = (this[APPLICATION_KEY] as GlobalSphereApplication)
+//                val globalSphereRepository = application.container.globalSphereRepository
+//                GlobalSphereViewModel(globalSphereRepository = globalSphereRepository as GlobalShereRepositoryImpl)
+//            }
+//        }
+//    }
+//}
 

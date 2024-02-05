@@ -4,7 +4,7 @@ import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CountryInfo(
+data class CountryInfoDTO(
     @Contextual val name: CountryName,
     val capital: List<String>,
     val continents: List<String>,
